@@ -116,3 +116,11 @@ Por fim, precisamos apenas configurar o run_settings do projeto no arquivo brows
 
 ## Executando
 
+Para a execução dos teste utilizando o ambiente de nuvem você deve utilizar o seguinte comando: 
+
+```
+browserstack-cypress run
+```
+
+E voala, caso você tenha informando o usuario e token validos no arquivo browserstack.json a execução podera ser acompanhada por meio  do [dashboard](https://automate.browserstack.com/). Os testes estaram agrupados por combinações de Navegador/SO definidos no arquivo browserstack.json.
+
