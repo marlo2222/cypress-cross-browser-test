@@ -2,44 +2,44 @@
 
 ## O que é cross browser testing
 
-O cross browser test é um metodo de garantia de qualidade para aplicativos Web que visa garatir que uma pagina web tenha o mesmo comportamento em diferentes versões do navegador e versoes do sistemas operacionais utilizados no mercado, ou seja, garante a qualidade do seu site em diferentes telas. 
+O cross browser test é um método de garantia de qualidade para aplicativos web que visa garantir que uma pagina web tenha o mesmo comportamento em diferentes versões do navegador e versões do sistema operacional utilizados no mercado, ou seja, garante a qualidade do seu site em diferentes telas. 
 
 ## Como realizar com cypress
-Para a realização de cross browser testing com cypress existem duas abordagens possiveis. A primeira utilizando a configuração do proprio cypress para que o teste seja executado nos diferentes navegadores disponiveis na sua maquina local ou no seu ambiente de CI. A segunda forma utilizando algum ambiente de teste em nuvem que permita a realização de multiplos browsers com cypress.
+Para a realização de cross browser testing com cypress existem duas abordagens possíveis.
+A primeira utilizando a configuração do próprio cypress para que o teste seja executado nos diferentes navegadores disponíveis na sua máquina local ou no seu ambiente de CI. 
+A segunda forma utilizando algum ambiente de teste em nuvem que permita a realização de múltiplos navegadores com cypress.
 
-Nessa publicação daremos enfase a segunda forma, no entando futuramento trarei algum post sobre a primeira forma.
-
-## pre requisitos
-[] Conta no browserstack criada
-[] [Node.js](https://nodejs.org/en/) instalado
+Nessa publicação daremos enfase a segunda forma, no entanto, futuramente trarei algum post sobre a primeira forma.
+## Pre requisitos
+* Conta no browserstack criada
+* [Node.js](https://nodejs.org/en/) instalado
 
 ## Mão na massa
 ### escolhendo o ambiente de nuvem 
-Para esse tipo de teste utilizaremos o ambiente de cloud test Browserstack. É importante a criação de uma conta no browserstack, pois será necessario um token de acesso ao ambiente de execução e dashboard de resultados. Para mais informações de como criar uma conta no [broserstack](https://www.browserstack.com/users/sign_up)
+Para essa categoria de teste utilizaremos o ambiente de cloud test Browserstack. É importante a criação de uma conta no browserstack, pois será necessário um token de acesso ao ambiente de execução e dashboard de resultados. Para mais informações de como criar uma conta no [browserstack](https://www.browserstack.com/users/sign_up)
 
-### clonando projeto para testes
-Nesse tutorial utilizaremos o projeto xxx para execução. Para isso, sera necessario clona o projeto para sua máquina conforme o comando abaixo: 
-
-```
-git clone projeto
-```
-
-após clona o projeto, será necessario entra no diretorio clonado e realizar a instalação das dependências para execução utilizando os comandos a seguir: 
+### clonando o projeto para testes
+Nesse tutorial utilizaremos o projeto [cypress serve rest](https://github.com/marlo2222/cypress-serve-rest) para execução. Para isso, sera necessario clona o projeto para sua máquina conforme o comando abaixo: 
 
 ```
-cd projeto
+git clone https://github.com/marlo2222/cypress-serve-rest.git
+```
+
+Após clona o projeto, será necessário entra no diretório clonado e realizar a instalação das dependências para execução utilizando os comandos a seguir: 
+```
+cd cypress-serve-rest
 
 npm install
 ```
 
 ### configurando browserstack
-O primeiro passo de configuração do browserstack no seu projeto cypress é a instalação é a instalação do CLI Browserstack-Cypress, para isso basta utilizar o seguinte comando: 
+O primeiro passo de configuração do browserstack no seu projeto cypress é a instalação do CLI Browserstack-Cypress, para isso basta utilizar o seguinte comando: 
 
 ```
 npm install -g browserstack-cypress-cli
 ```
 
-Com o CLI instalado, precisamo criar um arquivo de browserstack.json, utilizaremos ele para definir por exemplo as credenciais do usuario. Para a criação do arquivo basta utilizar o seguinte comando: 
+Com o CLI instalado, precisamos criar um arquivo browserstack.json, utilizaremos ele para definir, por exemplo, as credenciais do usuário. Para a criação do arquivo basta utilizar o seguinte comando: 
 
 ```
 browserstack-cypress init
@@ -58,7 +58,7 @@ No arquivo browserstack.json, adicione suas credenciais de login do Browserstack
 }
 ```
 
-A lista de navegadores que você deseja executar seus testes e versões para o navegaroes escolhidos tambem devera ser informando no arquivo browserstack.json, na sessão **browsers**. Observe que podemos diferentes versões para um mesmo browser, como mostrado a seguir: 
+A lista de navegadores que você deseja executar seus testes e versões para os navegadores escolhidos também devera ser informando no arquivo browserstack.json, na sessão **browsers**. Observe que podemos diferentes versões para um mesmo browser, como mostrado a seguir: 
 
 ```
 {
@@ -93,7 +93,7 @@ A lista de navegadores que você deseja executar seus testes e versões para o n
 }
 ```
 
-Por fim, precisamos apenas configurar o run_settings do projeto no arquivo browserstack.json. o seu arquivo deverá ser semelhante ao demostrado a seguir: 
+Por fim, precisamos apenas configurar o run_settings do projeto no arquivo browserstack.json. O seu arquivo deverá ser semelhante ao demostrado a seguir: 
 ```
 {
  ...
@@ -111,8 +111,8 @@ Por fim, precisamos apenas configurar o run_settings do projeto no arquivo brows
 }
 ```
 **observação:**
-* o campo build name será utilizado como nome do build a ser executado no ambiente de nuvem. 
-* apesar de o arquivo está definido com execução paralela com 5 instâncias, a execução será realizada em apenas 1 instância. 
+* O campo build name será utilizado como nome do build a ser executado no ambiente de nuvem. 
+* Apesar de o arquivo está definido com execução paralela com 5 instâncias, a execução será realizada em apenas 1 instância. 
 
 ## Executando
 
@@ -122,5 +122,8 @@ Para a execução dos teste utilizando o ambiente de nuvem você deve utilizar o
 browserstack-cypress run
 ```
 
-E voala, caso você tenha informando o usuario e token validos no arquivo browserstack.json a execução podera ser acompanhada por meio  do [dashboard](https://automate.browserstack.com/). Os testes estaram agrupados por combinações de Navegador/SO definidos no arquivo browserstack.json.
+E aqui está!!! Caso você tenha informando o usuário e token validos no arquivo browserstack.json a execução poderá ser acompanhada por meio  do link informado no console que o levará direto para a execução. Os testes estarão agrupados por combinações de Navegador/SO definidos no arquivo browserstack.json, conforme mostrado na imagem abaixo:
+
+![image](https://user-images.githubusercontent.com/40809563/170388452-7b636a2e-d23f-4d48-b1e2-9790e64a5bdb.png)
+
 
